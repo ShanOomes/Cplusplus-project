@@ -1,0 +1,12 @@
+﻿  Source.cpp
+C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Source.cpp(11,67): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Source.cpp(11,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+  SideScrollerSnow.vcxproj -> C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\x64\Debug\SideScrollerSnow.exe
