@@ -1,28 +1,21 @@
-#include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Game.h"
 
-using namespace sf;
-int main()
-{
-    RenderWindow window(VideoMode(800, 800), "SFML works!");
-    RectangleShape square;
+int main() {
+	//Init Game engine;
+	Game game;
 
-    square.setSize(Vector2f(100.f, 100.f));
-    square.setFillColor(Color::White);
-    square.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	//Game loop
+	while (game.running()) {
 
-    while (window.isOpen())
-    {
-        Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == Event::Closed)
-                window.close();
-        }
+		//Update
+		game.update();
 
-        window.clear();
-        window.draw(square);
-        window.display();
-    }
+		//Render
+		game.render();
 
-    return 0;
+	}
+
+	//End of application
+	return 0;
 }
