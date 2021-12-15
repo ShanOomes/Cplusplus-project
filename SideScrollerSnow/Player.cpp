@@ -45,7 +45,7 @@ void Player::move()
 		shape->setPosition(shape->getPosition().x, window_height - shape->getGlobalBounds().height);
 }
 
-void Player::setWindow(int height, int width)
+void Player::setWindowValues(int height, int width)//set window values, for borders of screen
 {
 	this->window_height = height;
 	this->window_width = width;

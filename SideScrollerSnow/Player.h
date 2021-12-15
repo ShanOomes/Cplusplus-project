@@ -17,7 +17,7 @@ public:
 
 	~Player();
 	void move();
-	void setWindow(int height, int width);
+	void setWindowValues(int height, int width);
 	Shape& getShape();
 };
 
