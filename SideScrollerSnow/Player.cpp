@@ -12,46 +12,29 @@ Player::~Player()
 {
 }
 
-void Player::move()
+void Player::controls()
 {
-	//have the player move with WASD keys.
-	if (Keyboard::isKeyPressed(Keyboard::Key::W)) {
-		shape->move(0.0f, -0.1f);
+	//Player controls
+	if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
+		this->velocityY = -15;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::A)) {
-		shape->move(-0.1f, 0.0f);
-
-	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
-		shape->move(0.0f, 0.1f);
-	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
-		shape->move(0.1f, 0.0f);
-	}
-
-	//screen collison
-
-	//left collison
-	if (shape->getPosition().x < 0.f)
-		shape->setPosition(0.f, shape->getPosition().y);
-	//top collison
-	if (shape->getPosition().y < 0.f)
-		shape->setPosition(shape->getPosition().x, 0.f);
-	//rignt collison
-	if (shape->getPosition().x + shape->getGlobalBounds().width > window_width)
-		shape->setPosition(window_width - shape->getGlobalBounds().width, shape->getPosition().y);
-	//bottom collison
-	if (shape->getPosition().y + shape->getGlobalBounds().height > window_height)
-		shape->setPosition(shape->getPosition().x, window_height - shape->getGlobalBounds().height);
 }
 
-void Player::setWindowValues(int height, int width)//set window values, for borders of screen
+void Player::updateMovement()
 {
-	this->window_height = height;
-	this->window_width = width;
+	if (y < 500)                  //If you are above ground
+		velocityY += gravity;    //Add gravity
+	else if (y > 500)             //If you are below ground
+		y = 500;                 //That's not supposed to happen, put him back up
+
+	velocityX += accelerationX;
+	velocityY += accelerationY;
+
+	x += velocityX;
+	y += velocityY;
 }
 
-sf::Shape& Player::getShape()
+Shape& Player::getShape()
 {
 	return*shape;
 }

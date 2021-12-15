@@ -10,7 +10,6 @@ void Game::initWindow()
 {
 	this->videoMode.height = 600;
 	this->videoMode.width = 800;
-	this->player.setWindow(600, 800);
 	this->window = new RenderWindow(this->videoMode, "Game 1", Style::Titlebar | Style::Close);
 
 	this->window->setFramerateLimit(120);
@@ -61,7 +60,9 @@ void Game::update()
 	this->pollEvents();
 	//this->debugGame();
 
-	this->player.move();
+	this->player.controls();
+	this->player.updateMovement();
+	this->player.getShape().setPosition(this->player.x, this->player.y);
 }
 
 void Game::render()

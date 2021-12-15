@@ -8,16 +8,32 @@ using namespace sf;
 class Player
 {
 private:
+	//Variables
+	float x = 0;
+	float y = 0;
 
-	//create player shape
-	std::unique_ptr<sf::RectangleShape> shape;
+	float velocityX = 0;
+	float velocityY = 0;
+	float accelerationX = 0;
+	float accelerationY = 0;
+
+	float gravity = 2;
+
+	//Game objects
+	unique_ptr<RectangleShape> shape;
+
+	//private functions
+
 public:
-	unsigned window_width = 0;
-	unsigned window_height = 0;
+	//Variables
 
+	//Constructors
+	Player();
 	~Player();
-	void move();
-	void setWindowValues(int height, int width);
+
+	//Functions
+	void controls();
+	void updateMovement();
 	Shape& getShape();
 };
 
