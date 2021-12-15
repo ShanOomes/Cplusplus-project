@@ -9,21 +9,20 @@ class Player
 {
 private:
 	//Variables
-	float x = 0;
-	float y = 0;
-
 	float velocityX = 0;
 	float velocityY = 0;
 	float accelerationX = 0;
 	float accelerationY = 0;
 
-	float gravity = 2;
+	float gravity = 0.5;
+
+	bool isGrounded;
 
 	//Game objects
 	unique_ptr<RectangleShape> shape;
 
 	//private functions
-
+	void controls();
 public:
 	//Variables
 
@@ -32,8 +31,9 @@ public:
 	~Player();
 
 	//Functions
-	void controls();
-	void updateMovement();
-	Shape& getShape();
+	void update();
+	void setPos(float x, float y);
+	void draw(RenderWindow* window);
+	Vector2f getPos();
 };
 

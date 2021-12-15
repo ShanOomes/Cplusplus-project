@@ -60,9 +60,7 @@ void Game::update()
 	this->pollEvents();
 	//this->debugGame();
 
-	this->player.controls();
-	this->player.updateMovement();
-	this->player.getShape().setPosition(this->player.x, this->player.y);
+	this->player.update();
 }
 
 void Game::render()
@@ -70,8 +68,7 @@ void Game::render()
 	this->window->clear();
 
 	//Draw potential objects
-
-	this->window->draw(player.getShape());
+	this->player.draw(this->window);
 	this->window->display();
 }
 
