@@ -1,2 +1,5 @@
-﻿  Player.cpp
+﻿  Game.cpp
+  Player.cpp
+  Generating Code...
+  LINK : C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\x64\Debug\SideScrollerSnow.exe not found or not built by the last incremental link; performing full link
   SideScrollerSnow.vcxproj -> C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\x64\Debug\SideScrollerSnow.exe

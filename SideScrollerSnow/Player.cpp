@@ -44,17 +44,17 @@ void Player::update()
 	setPos(getPos().x + velocityX, getPos().y + velocityY);
 }
 
-void Player::setPos(float x, float y)
+void Player::setPos(float x, float y)//Set position of shape
 {
 	shape->setPosition(x, y);
 }
 
-void Player::draw(RenderWindow* window)
+void Player::draw(RenderWindow* window)//Draw shape to window
 {
 	window->draw(*shape);
 }
 
-Vector2f Player::getPos()
+Vector2f Player::getPos()//Returns position of shape
 {
 	return shape->getPosition();
 }
