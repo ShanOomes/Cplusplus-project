@@ -61,6 +61,8 @@ void Game::update()
 	//this->debugGame();
 
 	this->player.update();
+
+	this->flake.update();
 }
 
 void Game::render()
@@ -69,6 +71,7 @@ void Game::render()
 
 	//Draw potential objects
 	this->player.draw(this->window);
+	this->flake.draw(this->window);
 	this->window->display();
 }
 

@@ -7,6 +7,8 @@
 #include <SFML/Audio.hpp>
 
 #include "Player.h"
+#include "Flake.h"
+
 using namespace std;
 using namespace sf;
 /*
@@ -17,6 +19,7 @@ class Game
 private:
 	//Variables
 	Player player;
+	Flake flake;
 
 	//Window
 	RenderWindow* window;
