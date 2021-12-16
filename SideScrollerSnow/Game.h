@@ -27,6 +27,7 @@ private:
 	Event ev;
 
 	//Game objects
+	RectangleShape square;
 
 	//Private functions
 	void initVariables();

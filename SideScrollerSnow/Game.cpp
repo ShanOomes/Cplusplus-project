@@ -17,7 +17,9 @@ void Game::initWindow()
 
 void Game::initShapes()
 {
-
+	square.setSize(Vector2f(100.f, 100.f));
+	square.setFillColor(Color::White);
+	square.setPosition(100, 100);
 }
 
 //Constructors
@@ -72,6 +74,9 @@ void Game::render()
 	//Draw potential objects
 	this->player.draw(this->window);
 	this->flake.draw(this->window);
+
+	this->window->draw(square);
+
 	this->window->display();
 }
 
