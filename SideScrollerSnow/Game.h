@@ -6,8 +6,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 
+#include <vector>
+
 #include "Player.h"
 #include "Flake.h"
+#include "Obstacle.h"
 
 using namespace std;
 using namespace sf;
@@ -21,13 +24,17 @@ private:
 	Player player;
 	Flake flake;
 
+	vector<Obstacle*> obstacle;
+	float spawnTimer;
+	float spawnTimerMax;
+	int maxObstacles;
+
 	//Window
 	RenderWindow* window;
 	VideoMode videoMode;
 	Event ev;
 
 	//Game objects
-	RectangleShape square;
 
 	//Private functions
 	void initVariables();
@@ -45,6 +52,8 @@ public:
 	void pollEvents();
 	void update();
 	void render();
+
+	void spawnObstacles();
 
 	void debugGame();
 };

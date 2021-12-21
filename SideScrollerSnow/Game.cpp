@@ -4,6 +4,10 @@
 void Game::initVariables()
 {
 	this->window = nullptr;
+
+	this->spawnTimerMax = 10.f;
+	this->spawnTimer = this->spawnTimerMax;
+	this->maxObstacles = 10;
 }
 
 void Game::initWindow()
@@ -12,14 +16,11 @@ void Game::initWindow()
 	this->videoMode.width = 800;
 	this->window = new RenderWindow(this->videoMode, "Game 1", Style::Titlebar | Style::Close);
 
-	this->window->setFramerateLimit(120);
+	this->window->setFramerateLimit(60);
 }
 
 void Game::initShapes()
 {
-	square.setSize(Vector2f(100.f, 100.f));
-	square.setFillColor(Color::White);
-	square.setPosition(100, 100);
 }
 
 //Constructors
@@ -64,6 +65,8 @@ void Game::update()
 
 	this->player.update();
 
+	this->spawnObstacles();
+
 	this->flake.update();
 }
 
@@ -75,9 +78,32 @@ void Game::render()
 	this->player.draw(this->window);
 	this->flake.draw(this->window);
 
-	this->window->draw(square);
+	for (auto* obstacle : this->obstacle)
+	{
+		obstacle->draw(this->window);
+	}
 
 	this->window->display();
+}
+
+void Game::spawnObstacles()
+{
+	this->spawnTimer += 0.1f;
+	if (this->spawnTimer >= this->spawnTimerMax) {
+		this->obstacle.push_back(new Obstacle(this->window->getSize().x, 500.f));
+		this->spawnTimer = 0.f;
+
+	}
+
+	for (int i = 0; i < this->obstacle.size(); ++i) {
+		this->obstacle[i]->update();
+
+		//Remove enemy if off screen
+		if (this->obstacle[i]->getBounds().left > this->window->getSize().x) {
+			this->obstacle.erase(this->obstacle.begin() + i);
+		}
+
+	}
 }
 
 void Game::debugGame()
