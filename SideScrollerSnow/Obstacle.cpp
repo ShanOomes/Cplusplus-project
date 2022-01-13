@@ -30,6 +30,11 @@ const FloatRect Obstacle::getBounds() const
 	return obstacle.getGlobalBounds();
 }
 
+RectangleShape Obstacle::getRect()
+{
+	return obstacle;
+}
+
 void Obstacle::update()
 {
 	obstacle.move(-speed, 0.f);

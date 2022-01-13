@@ -14,7 +14,7 @@ void Game::initWindow()
 {
 	this->videoMode.height = 600;
 	this->videoMode.width = 800;
-	this->window = new RenderWindow(this->videoMode, "Game 1", Style::Titlebar | Style::Close);
+	this->window = new RenderWindow(this->videoMode, "Snow game", Style::Titlebar | Style::Close);
 
 	this->window->setFramerateLimit(60);
 }
@@ -67,6 +67,8 @@ void Game::update()
 
 	this->spawnObstacles();
 
+	this->checkCollision();
+
 	this->flake.update();
 }
 
@@ -103,6 +105,18 @@ void Game::spawnObstacles()
 		//Remove enemy if off screen
 		if (this->obstacle[i]->getBounds().left > this->window->getSize().x) {
 			this->obstacle.erase(this->obstacle.begin() + i);
+		}
+	}
+}
+
+void Game::checkCollision()
+{
+	for (int i = 0; i < this->obstacle.size(); ++i)
+	{
+		const bool collides = this->player.getRect().getGlobalBounds().intersects(this->obstacle[i]->getRect().getGlobalBounds());
+		if (collides)
+		{
+			cout << "Collision with obstacle" << endl;
 		}
 	}
 }

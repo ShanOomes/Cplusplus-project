@@ -54,6 +54,7 @@ public:
 	void render();
 
 	void spawnObstacles();
+	void checkCollision();
 
 	void debugGame();
 };

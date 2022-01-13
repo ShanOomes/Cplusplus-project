@@ -25,6 +25,7 @@ public:
 
 	//Accessors
 	const FloatRect getBounds() const;
+	RectangleShape getRect();
 
 	//Functions
 	void update();

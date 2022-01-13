@@ -58,3 +58,9 @@ Vector2f Player::getPos()//Returns position of shape
 {
 	return shape->getPosition();
 }
+
+RectangleShape Player::getRect()
+{
+	return *shape;
+}
+

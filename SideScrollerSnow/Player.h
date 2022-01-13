@@ -35,5 +35,6 @@ public:
 	void setPos(float x, float y);
 	void draw(RenderWindow* window);
 	Vector2f getPos();
+	RectangleShape getRect();
 };
 
