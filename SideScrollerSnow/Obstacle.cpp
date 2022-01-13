@@ -8,8 +8,8 @@ void Obstacle::initVariables()
 void Obstacle::initShape()
 {
 	this->obstacle.setSize(Vector2f(25.f, 50.f));
-	Color color(rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1);
-	this->obstacle.setFillColor(color);
+	//Color color(rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1);
+	this->obstacle.setFillColor(Color::White);
 
 }
 
