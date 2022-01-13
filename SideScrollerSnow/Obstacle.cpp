@@ -2,23 +2,23 @@
 
 void Obstacle::initVariables()
 {
-	this->speed = static_cast<float>(3);
+	speed = static_cast<float>(3);
 }
 
 void Obstacle::initShape()
 {
-	this->obstacle.setSize(Vector2f(25.f, 50.f));
+	obstacle.setSize(Vector2f(25.f, 50.f));
 	//Color color(rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1);
-	this->obstacle.setFillColor(Color::White);
+	obstacle.setFillColor(Color::White);
 
 }
 
 Obstacle::Obstacle(float pos_x, float pos_y)
 {
-	this->initVariables();
-	this->initShape();
+	initVariables();
+	initShape();
 
-	this->obstacle.setPosition(pos_x, pos_y);
+	obstacle.setPosition(pos_x, pos_y);
 }
 
 Obstacle::~Obstacle()
@@ -27,17 +27,17 @@ Obstacle::~Obstacle()
 
 const FloatRect Obstacle::getBounds() const
 {
-	return this->obstacle.getGlobalBounds();
+	return obstacle.getGlobalBounds();
 }
 
 void Obstacle::update()
 {
-	this->obstacle.move(-this->speed, 0.f);
+	obstacle.move(-speed, 0.f);
 }
 
 void Obstacle::draw(RenderWindow* window)
 {
-	window->draw(this->obstacle);
+	window->draw(obstacle);
 }
 
 

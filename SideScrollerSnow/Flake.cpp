@@ -2,7 +2,7 @@
 
 Flake::Flake()
 {
-	this->snowflakes.reserve(numOfSnowflakes);
+	snowflakes.reserve(numOfSnowflakes);
 }
 
 Flake::~Flake()
@@ -10,13 +10,13 @@ Flake::~Flake()
 }
 
 // Create a snowflake and store it in an array
-void Flake::createFlake(vector<CircleShape>& arr)
+void Flake::createFlake()
 {
 	CircleShape flake(float(rand()) / (float)(RAND_MAX / 3.0f) + 0.5f);
-	flake.setPosition(float(rand() % this->WIDTH), 0.0f);
+	flake.setPosition(float(rand() % WIDTH), 0.0f);
 	flake.setFillColor(Color::White);
 
-	arr.emplace_back(flake);
+	snowflakes.emplace_back(flake);
 }
 
 void Flake::update()
@@ -24,10 +24,10 @@ void Flake::update()
 	this->elapsed++;
 
 	// If the delay has passed and the max num of snowflakes isn't reached, create another
-	if (this->elapsed >= this->delay && this->snowflakes.size() < this->numOfSnowflakes)
+	if (elapsed >= delay && snowflakes.size() < numOfSnowflakes)
 	{
-		createFlake(this->snowflakes);
-		this->elapsed = 0;
+		createFlake();
+		elapsed = 0;
 	}
 }
 

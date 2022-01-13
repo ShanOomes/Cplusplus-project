@@ -34,7 +34,7 @@ public:
 	//Functions
 	void update();
 	void draw(RenderWindow* window);
-	void createFlake(vector<CircleShape>& arr);
+	void createFlake();
 
 };
 

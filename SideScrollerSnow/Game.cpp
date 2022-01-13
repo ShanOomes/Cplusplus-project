@@ -89,20 +89,21 @@ void Game::render()
 void Game::spawnObstacles()
 {
 	this->spawnTimer += 0.1f;
-	if (this->spawnTimer >= this->spawnTimerMax) {
+	if (this->spawnTimer >= this->spawnTimerMax)
+	{
 		this->obstacle.push_back(new Obstacle(this->window->getSize().x, 500.f));
 		this->spawnTimer = 0.f;
-
 	}
 
-	for (int i = 0; i < this->obstacle.size(); ++i) {
+	for (int i = 0; i < this->obstacle.size(); ++i)
+	{
+		//Update the movement of the obstacle
 		this->obstacle[i]->update();
 
 		//Remove enemy if off screen
 		if (this->obstacle[i]->getBounds().left > this->window->getSize().x) {
 			this->obstacle.erase(this->obstacle.begin() + i);
 		}
-
 	}
 }
 
