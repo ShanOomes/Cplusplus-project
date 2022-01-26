@@ -29,6 +29,8 @@ void Player::initSprite()
 {
 	sprite.setTexture(texture);
 	sprite.setScale(Vector2f(0.8f, 0.8f));
+
+	sprite.setPosition(100, 0);
 }
 
 void Player::update()
@@ -36,16 +38,16 @@ void Player::update()
 	controls();
 
 	Vector2f position = getPos();
-	if (position.y <= 500)
+	if (position.y <= 460)
 	{
 		velocityY += gravity;
 		isGrounded = false;
 	}
-	else if (position.y > 500)
+	else if (position.y > 460)
 	{
 		//cout << "Going under the ground" << endl;
 		isGrounded = true;
-		setPos(position.x, 500);
+		setPos(position.x, 460);
 		velocityY = 0;
 	}
 
