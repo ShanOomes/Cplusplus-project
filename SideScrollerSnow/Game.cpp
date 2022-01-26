@@ -8,6 +8,7 @@ void Game::initVariables()
 	this->spawnTimerMax = 10.f;
 	this->spawnTimer = this->spawnTimerMax;
 	this->maxObstacles = 10;
+	this->isGameOver = false;
 }
 
 void Game::initWindow()
@@ -23,12 +24,41 @@ void Game::initShapes()
 {
 }
 
+void Game::initGameOverText()
+{
+	if (!pixelFont.loadFromFile("Fonts/poxel.ttf")) {
+		cout << "Error with font loading" << endl;
+	}
+	else {
+		this->gameOverText.setFont(pixelFont);
+		this->gameOverText.setString("Game Over!");
+
+		//this->gameOverText.setPosition(this->window->getSize().x / 2.0f, this->window->getSize().y / 2.0f); //Window width divided by 2, same with height.
+		//this->gameOverText.setOrigin(round(this->gameOverText.getLocalBounds().width / 2.0f), round(this->gameOverText.getLocalBounds().height / 2.0f));
+
+		this->gameOverText.setOrigin(this->gameOverText.getGlobalBounds().left + round(this->gameOverText.getGlobalBounds().width / 2), this->gameOverText.getGlobalBounds().top + round(this->gameOverText.getGlobalBounds().height / 2));
+		this->gameOverText.setPosition(250, 250);
+
+		//this->gameOverText.setPosition(this->window->getSize().x / 2.0f, this->window->getSize().y / 2.0f);
+		
+		// set the character size
+		this->gameOverText.setCharacterSize(80); // in pixels, not points!
+
+		// set the color
+		this->gameOverText.setFillColor(Color::White);
+
+		// set the text style
+		this->gameOverText.setStyle(Text::Bold);
+	}
+}
+
 //Constructors
 Game::Game()
 {
 	this->initVariables();
 	this->initWindow();
 	this->initShapes();
+	this->initGameOverText();
 }
 
 Game::~Game()
@@ -63,13 +93,15 @@ void Game::update()
 	this->pollEvents();
 	//this->debugGame();
 
-	this->player.update();
+	if (!this->isGameOver) {
+		this->player.update();
 
-	this->spawnObstacles();
+		this->spawnObstacles();
 
-	this->checkCollision();
+		this->checkCollision();
 
-	this->flake.update();
+		this->flake.update();
+	}
 }
 
 void Game::render()
@@ -79,6 +111,10 @@ void Game::render()
 	//Draw potential objects
 	this->player.draw(this->window);
 	this->flake.draw(this->window);
+
+	if (this->isGameOver) {
+		this->window->draw(this->gameOverText);
+	}
 
 	for (auto* obstacle : this->obstacle)
 	{
@@ -116,7 +152,8 @@ void Game::checkCollision()
 		const bool collides = this->player.getRect().getGlobalBounds().intersects(this->obstacle[i]->getRect().getGlobalBounds());
 		if (collides)
 		{
-			cout << "Collision with obstacle" << endl;
+			this->isGameOver = true;
+			cout << "Collision with obstacles" << endl;
 		}
 	}
 }

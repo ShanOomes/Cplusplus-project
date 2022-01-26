@@ -24,10 +24,15 @@ private:
 	Player player;
 	Flake flake;
 
+	bool isGameOver;
+
 	vector<Obstacle*> obstacle;
 	float spawnTimer;
 	float spawnTimerMax;
 	int maxObstacles;
+
+	Font pixelFont;
+	Text gameOverText;
 
 	//Window
 	RenderWindow* window;
@@ -40,6 +45,7 @@ private:
 	void initVariables();
 	void initWindow();
 	void initShapes();
+	void initGameOverText();
 public:
 	//Constructors
 	Game();
