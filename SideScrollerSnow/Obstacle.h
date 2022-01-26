@@ -10,12 +10,17 @@ class Obstacle
 private:
 	//Variables
 	float speed;
+
 	//Game objects
-	RectangleShape obstacle;
+
+	Sprite sprite;
+	Texture texture;
 
 	//private functions
 	void initVariables();
 	void initShape();
+	void initTexture();
+	void initSprite();
 public:
 	//Variables
 
@@ -25,7 +30,7 @@ public:
 
 	//Accessors
 	const FloatRect getBounds() const;
-	RectangleShape getRect();
+	Sprite getRect();
 
 	//Functions
 	void update();

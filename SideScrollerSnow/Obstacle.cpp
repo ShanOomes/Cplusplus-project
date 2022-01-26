@@ -7,10 +7,19 @@ void Obstacle::initVariables()
 
 void Obstacle::initShape()
 {
-	obstacle.setSize(Vector2f(25.f, 50.f));
-	//Color color(rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1);
-	obstacle.setFillColor(Color::White);
+	sprite.setScale(Vector2f(0.15f, 0.15f));
+}
 
+void Obstacle::initTexture()
+{
+	if (!texture.loadFromFile("Textures/tree.png")) {
+		cout << "Error with tree sprite loading" << endl;
+	}
+}
+
+void Obstacle::initSprite()
+{
+	sprite.setTexture(texture);
 }
 
 Obstacle::Obstacle(float pos_x, float pos_y)
@@ -18,7 +27,10 @@ Obstacle::Obstacle(float pos_x, float pos_y)
 	initVariables();
 	initShape();
 
-	obstacle.setPosition(pos_x, pos_y);
+	initTexture();
+	initSprite();
+
+	sprite.setPosition(pos_x, pos_y);
 }
 
 Obstacle::~Obstacle()
@@ -27,22 +39,22 @@ Obstacle::~Obstacle()
 
 const FloatRect Obstacle::getBounds() const
 {
-	return obstacle.getGlobalBounds();
+	return sprite.getGlobalBounds();
 }
 
-RectangleShape Obstacle::getRect()
+Sprite Obstacle::getRect()
 {
-	return obstacle;
+	return sprite;
 }
 
 void Obstacle::update()
 {
-	obstacle.move(-speed, 0.f);
+	sprite.move(-speed, 0.f);
 }
 
 void Obstacle::draw(RenderWindow* window)
 {
-	window->draw(obstacle);
+	window->draw(sprite);
 }
 
 

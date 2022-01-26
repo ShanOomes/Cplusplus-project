@@ -24,31 +24,31 @@ void Game::initShapes()
 {
 }
 
-void Game::initGameOverText()
+void Game::initText()
+{
+	this->gameOverText.setFont(pixelFont);
+	this->gameOverText.setString("Game Over!");
+
+	this->gameOverText.setOrigin(this->gameOverText.getGlobalBounds().left + round(this->gameOverText.getGlobalBounds().width / 2), this->gameOverText.getGlobalBounds().top + round(this->gameOverText.getGlobalBounds().height / 2));
+	this->gameOverText.setPosition(250, 250);
+
+	//this->gameOverText.setPosition(this->window->getSize().x / 2.0f, this->window->getSize().y / 2.0f);
+		
+	// set the character size
+	this->gameOverText.setCharacterSize(80); // in pixels, not points!
+
+	// set the color
+	this->gameOverText.setFillColor(Color::White);
+
+	// set the text style
+	this->gameOverText.setStyle(Text::Bold);
+
+}
+
+void Game::initFonts()
 {
 	if (!pixelFont.loadFromFile("Fonts/poxel.ttf")) {
 		cout << "Error with font loading" << endl;
-	}
-	else {
-		this->gameOverText.setFont(pixelFont);
-		this->gameOverText.setString("Game Over!");
-
-		//this->gameOverText.setPosition(this->window->getSize().x / 2.0f, this->window->getSize().y / 2.0f); //Window width divided by 2, same with height.
-		//this->gameOverText.setOrigin(round(this->gameOverText.getLocalBounds().width / 2.0f), round(this->gameOverText.getLocalBounds().height / 2.0f));
-
-		this->gameOverText.setOrigin(this->gameOverText.getGlobalBounds().left + round(this->gameOverText.getGlobalBounds().width / 2), this->gameOverText.getGlobalBounds().top + round(this->gameOverText.getGlobalBounds().height / 2));
-		this->gameOverText.setPosition(250, 250);
-
-		//this->gameOverText.setPosition(this->window->getSize().x / 2.0f, this->window->getSize().y / 2.0f);
-		
-		// set the character size
-		this->gameOverText.setCharacterSize(80); // in pixels, not points!
-
-		// set the color
-		this->gameOverText.setFillColor(Color::White);
-
-		// set the text style
-		this->gameOverText.setStyle(Text::Bold);
 	}
 }
 
@@ -58,7 +58,8 @@ Game::Game()
 	this->initVariables();
 	this->initWindow();
 	this->initShapes();
-	this->initGameOverText();
+	this->initFonts();
+	this->initText();
 }
 
 Game::~Game()
@@ -129,7 +130,7 @@ void Game::spawnObstacles()
 	this->spawnTimer += 0.1f;
 	if (this->spawnTimer >= this->spawnTimerMax)
 	{
-		this->obstacle.push_back(new Obstacle(this->window->getSize().x, 500.f));
+		this->obstacle.push_back(new Obstacle(this->window->getSize().x, 470.f));
 		this->spawnTimer = 0.f;
 	}
 

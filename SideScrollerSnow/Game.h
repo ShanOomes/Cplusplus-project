@@ -45,7 +45,8 @@ private:
 	void initVariables();
 	void initWindow();
 	void initShapes();
-	void initGameOverText();
+	void initFonts();
+	void initText();
 public:
 	//Constructors
 	Game();

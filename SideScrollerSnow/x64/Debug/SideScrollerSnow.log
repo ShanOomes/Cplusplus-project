@@ -1,10 +1,10 @@
-﻿  Flake.cpp
-  Game.cpp
-C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Game.cpp(132,64): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+﻿  Game.cpp
+C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Game.cpp(133,64): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
+  Obstacle.cpp
   Source.cpp
   Generating Code...
   SideScrollerSnow.vcxproj -> C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\x64\Debug\SideScrollerSnow.exe
