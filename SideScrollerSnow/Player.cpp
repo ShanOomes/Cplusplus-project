@@ -2,10 +2,8 @@
 
 Player::Player()
 {
-	//set te shape position and the color of the object
-	shape = make_unique<RectangleShape>(RectangleShape(Vector2f(40.0f, 40.0f)));
-	shape->setPosition(Vector2f(35.0f, 100.0f));
-	shape->setFillColor(Color::White);
+	initTexture();
+	initSprite();
 }
 
 Player::~Player()
@@ -18,6 +16,19 @@ void Player::controls()
 	if (Keyboard::isKeyPressed(Keyboard::Key::Space) && isGrounded) {
 		velocityY = -15;
 	}
+}
+
+void Player::initTexture()
+{
+	if (!texture.loadFromFile("Textures/stick-figure-pixel.png")) {
+		cout << "Error with player texture loading" << endl;
+	}
+}
+
+void Player::initSprite()
+{
+	sprite.setTexture(texture);
+	sprite.setScale(Vector2f(0.8f, 0.8f));
 }
 
 void Player::update()
@@ -46,21 +57,21 @@ void Player::update()
 
 void Player::setPos(float x, float y)//Set position of shape
 {
-	shape->setPosition(x, y);
+	sprite.setPosition(x, y);
 }
 
 void Player::draw(RenderWindow* window)//Draw shape to window
 {
-	window->draw(*shape);
+	window->draw(sprite);
 }
 
 Vector2f Player::getPos()//Returns position of shape
 {
-	return shape->getPosition();
+	return sprite.getPosition();
 }
 
-RectangleShape Player::getRect()
+Sprite Player::getRect()
 {
-	return *shape;
+	return sprite;
 }
 

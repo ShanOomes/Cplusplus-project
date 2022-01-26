@@ -13,7 +13,7 @@ void Obstacle::initShape()
 void Obstacle::initTexture()
 {
 	if (!texture.loadFromFile("Textures/tree.png")) {
-		cout << "Error with tree sprite loading" << endl;
+		cout << "Error with tree texture loading" << endl;
 	}
 }
 

@@ -21,8 +21,14 @@ private:
 	//Game objects
 	unique_ptr<RectangleShape> shape;
 
+	Sprite sprite;
+	Texture texture;
+
 	//private functions
 	void controls();
+
+	void initTexture();
+	void initSprite();
 public:
 	//Variables
 
@@ -35,6 +41,6 @@ public:
 	void setPos(float x, float y);
 	void draw(RenderWindow* window);
 	Vector2f getPos();
-	RectangleShape getRect();
+	Sprite getRect();
 };
 
