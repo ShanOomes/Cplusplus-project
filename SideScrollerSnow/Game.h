@@ -31,7 +31,9 @@ private:
 	float spawnTimerMax;
 	int maxObstacles;
 
-	Font pixelFont;
+	Font poxelFont;
+	Font pixelManiaFont;
+
 	Text gameOverText;
 
 	//Window

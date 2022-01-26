@@ -18,7 +18,6 @@ private:
 
 	//private functions
 	void initVariables();
-	void initShape();
 	void initTexture();
 	void initSprite();
 public:

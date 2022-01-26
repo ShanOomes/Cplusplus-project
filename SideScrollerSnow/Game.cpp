@@ -26,7 +26,7 @@ void Game::initShapes()
 
 void Game::initText()
 {
-	this->gameOverText.setFont(pixelFont);
+	this->gameOverText.setFont(poxelFont);
 	this->gameOverText.setString("Game Over!");
 
 	this->gameOverText.setOrigin(this->gameOverText.getGlobalBounds().left + round(this->gameOverText.getGlobalBounds().width / 2), this->gameOverText.getGlobalBounds().top + round(this->gameOverText.getGlobalBounds().height / 2));
@@ -47,7 +47,10 @@ void Game::initText()
 
 void Game::initFonts()
 {
-	if (!pixelFont.loadFromFile("Fonts/poxel.ttf")) {
+	if (!poxelFont.loadFromFile("Fonts/poxel.ttf")) {
+		cout << "Error with font loading" << endl;
+	}
+	if (!pixelManiaFont.loadFromFile("Fonts/Pixelmania.ttf")) {
 		cout << "Error with font loading" << endl;
 	}
 }

@@ -5,11 +5,6 @@ void Obstacle::initVariables()
 	speed = static_cast<float>(3);
 }
 
-void Obstacle::initShape()
-{
-	sprite.setScale(Vector2f(0.15f, 0.15f));
-}
-
 void Obstacle::initTexture()
 {
 	if (!texture.loadFromFile("Textures/tree.png")) {
@@ -20,12 +15,13 @@ void Obstacle::initTexture()
 void Obstacle::initSprite()
 {
 	sprite.setTexture(texture);
+
+	sprite.setScale(Vector2f(0.15f, 0.15f));
 }
 
 Obstacle::Obstacle(float pos_x, float pos_y)
 {
 	initVariables();
-	initShape();
 
 	initTexture();
 	initSprite();
