@@ -43,6 +43,11 @@ Sprite Obstacle::getRect()
 	return sprite;
 }
 
+Vector2f Obstacle::getPos()
+{
+	return sprite.getPosition();
+}
+
 void Obstacle::update()
 {
 	sprite.move(-speed, 0.f);

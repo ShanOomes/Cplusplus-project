@@ -34,5 +34,6 @@ public:
 	//Functions
 	void update();
 	void draw(RenderWindow* window);
+	Vector2f getPos();
 };
 

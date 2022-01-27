@@ -26,10 +26,18 @@ private:
 
 	bool isGameOver;
 
-	vector<Obstacle*> obstacle;
+	vector<Obstacle*> obstacles;
+
+	vector<Obstacle*>::iterator curr;
+	//Obstacle* currentObstacle;
+
 	float spawnTimer;
 	float spawnTimerMax;
 	int maxObstacles;
+
+	Text scoreText;
+	int score;
+	bool functionCalled;
 
 	Font poxelFont;
 	Font pixelManiaFont;
@@ -49,6 +57,9 @@ private:
 	void initShapes();
 	void initFonts();
 	void initText();
+
+	void updateText();
+	void incrementScore();
 public:
 	//Constructors
 	Game();

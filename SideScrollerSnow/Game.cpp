@@ -9,6 +9,8 @@ void Game::initVariables()
 	this->spawnTimer = this->spawnTimerMax;
 	this->maxObstacles = 10;
 	this->isGameOver = false;
+
+	this->score = 0;
 }
 
 void Game::initWindow()
@@ -43,6 +45,13 @@ void Game::initText()
 	// set the text style
 	this->gameOverText.setStyle(Text::Bold);
 
+	this->scoreText.setFont(poxelFont);
+	this->scoreText.setString("00");
+	this->scoreText.setOrigin(this->scoreText.getGlobalBounds().left + round(this->scoreText.getGlobalBounds().width / 2), this->scoreText.getGlobalBounds().top + round(this->scoreText.getGlobalBounds().height / 2));
+	this->scoreText.setPosition(730, 20);
+	this->scoreText.setCharacterSize(60);
+	this->scoreText.setFillColor(Color::White);
+
 }
 
 void Game::initFonts()
@@ -52,6 +61,24 @@ void Game::initFonts()
 	}
 	if (!pixelManiaFont.loadFromFile("Fonts/Pixelmania.ttf")) {
 		cout << "Error with font loading" << endl;
+	}
+}
+
+void Game::updateText()
+{
+	this->scoreText.setString(to_string(score));
+}
+
+void Game::incrementScore()
+{
+	//if (obstacles.size() > 0 && curr != obstacles.end() && (*curr)->getPos().x < player.getPos().x)
+	if (obstacles.size() > 0 && (*curr)->getPos().x < player.getPos().x)
+	{
+		cout << "Incrementing score" << endl;
+		score++;
+		if(next(curr, 1) != obstacles.end()){
+			curr = next(curr, 1);
+		}
 	}
 }
 
@@ -105,6 +132,10 @@ void Game::update()
 		this->checkCollision();
 
 		this->flake.update();
+
+		this->updateText();
+
+		incrementScore();
 	}
 }
 
@@ -120,7 +151,9 @@ void Game::render()
 		this->window->draw(this->gameOverText);
 	}
 
-	for (auto* obstacle : this->obstacle)
+	this->window->draw(this->scoreText);
+
+	for (auto* obstacle : this->obstacles)
 	{
 		obstacle->draw(this->window);
 	}
@@ -130,30 +163,37 @@ void Game::render()
 
 void Game::spawnObstacles()
 {
-	this->spawnTimer += 0.1f;
-	if (this->spawnTimer >= this->spawnTimerMax)
+	spawnTimer += 0.1f;
+	if (spawnTimer >= spawnTimerMax)
 	{
-		this->obstacle.push_back(new Obstacle(this->window->getSize().x, 470.f));
-		this->spawnTimer = 0.f;
+		Obstacle* ob = new Obstacle(window->getSize().x, 470.f);
+		obstacles.push_back(ob);
+		
+		curr = obstacles.begin();
+
+		spawnTimer = 0.f;
 	}
 
-	for (int i = 0; i < this->obstacle.size(); ++i)
+	for (int i = 0; i < obstacles.size(); ++i)
 	{
 		//Update the movement of the obstacle
-		this->obstacle[i]->update();
+		obstacles[i]->update();
 
-		//Remove enemy if off screen
-		if (this->obstacle[i]->getBounds().left > this->window->getSize().x) {
-			this->obstacle.erase(this->obstacle.begin() + i);
+		//Remove obstacle if off screen
+		
+		if (obstacles[i]->getPos().x < -10) {
+			delete obstacles[i];
+			curr = obstacles.erase(obstacles.begin() + i);
+			cout << "Obstacle delete" << endl;
 		}
 	}
 }
 
 void Game::checkCollision()
 {
-	for (int i = 0; i < this->obstacle.size(); ++i)
+	for (int i = 0; i < this->obstacles.size(); ++i)
 	{
-		const bool collides = this->player.getRect().getGlobalBounds().intersects(this->obstacle[i]->getRect().getGlobalBounds());
+		const bool collides = this->player.getRect().getGlobalBounds().intersects(this->obstacles[i]->getRect().getGlobalBounds());
 		if (collides)
 		{
 			this->isGameOver = true;

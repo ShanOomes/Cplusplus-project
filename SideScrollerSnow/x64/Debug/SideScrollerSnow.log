@@ -1,5 +1,5 @@
 ﻿  Game.cpp
-C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Game.cpp(136,64): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Game.cpp(169,48): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
