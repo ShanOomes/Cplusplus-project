@@ -33,7 +33,7 @@ private:
 	vector<Obstacle*> obstacles;
 
 	vector<Obstacle*>::iterator curr;
-	//Obstacle* currentObstacle;
+	float obstacleSpeed;
 
 	float spawnTimer;
 	float spawnTimerMax;

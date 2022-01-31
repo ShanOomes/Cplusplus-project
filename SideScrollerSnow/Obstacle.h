@@ -32,6 +32,7 @@ public:
 	Sprite getRect();
 
 	//Functions
+	void IncreaseSpeed(float value);
 	void update();
 	void draw(RenderWindow* window);
 	Vector2f getPos();

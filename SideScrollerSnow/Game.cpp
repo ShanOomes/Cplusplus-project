@@ -11,6 +11,8 @@ void Game::initVariables()
 	this->isGameOver = false;
 
 	this->score = 0;
+
+	obstacleSpeed = 3;
 }
 
 void Game::initWindow()
@@ -133,6 +135,28 @@ void Game::update()
 		this->updateText();
 
 		incrementScore();
+
+		switch (score) {
+		case 5:
+			obstacleSpeed = 4;
+			break;
+		case 10:
+			obstacleSpeed = 5;
+			break;
+		case 20:
+			obstacleSpeed = 6;
+			break;
+		case 30:
+			obstacleSpeed = 7;
+			break;
+		case 40:
+			obstacleSpeed = 8;
+			break;
+
+		case 50:
+			obstacleSpeed = 10;
+			break;
+		}
 	}
 }
 
@@ -169,7 +193,7 @@ void Game::spawnObstacles()
 		
 		curr = obstacles.begin();
 
-		spawnTimerMax = rand() % 15 + 5;
+		spawnTimerMax = rand() % 10 + 5;
 		spawnTimer = 0.f;
 	}
 
@@ -177,7 +201,7 @@ void Game::spawnObstacles()
 	{
 		//Update the movement of the obstacle
 		obstacles[i]->update();
-
+		obstacles[i]->IncreaseSpeed(obstacleSpeed);
 		//Remove obstacle if off screen
 		
 		if (obstacles[i]->getPos().x < -10) {

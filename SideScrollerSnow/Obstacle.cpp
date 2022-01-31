@@ -2,7 +2,9 @@
 
 void Obstacle::initVariables()
 {
-	speed = static_cast<float>(3);
+	//speed = static_cast<float>(3);
+
+	speed = 0.f;
 }
 
 void Obstacle::initTexture()
@@ -46,6 +48,11 @@ Sprite Obstacle::getRect()
 Vector2f Obstacle::getPos()
 {
 	return sprite.getPosition();
+}
+
+void Obstacle::IncreaseSpeed(float value)
+{
+	speed = value;
 }
 
 void Obstacle::update()
