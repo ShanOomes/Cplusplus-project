@@ -33,8 +33,6 @@ void Game::initText()
 
 	this->gameOverText.setOrigin(this->gameOverText.getGlobalBounds().left + round(this->gameOverText.getGlobalBounds().width / 2), this->gameOverText.getGlobalBounds().top + round(this->gameOverText.getGlobalBounds().height / 2));
 	this->gameOverText.setPosition(250, 250);
-
-	//this->gameOverText.setPosition(this->window->getSize().x / 2.0f, this->window->getSize().y / 2.0f);
 		
 	// set the character size
 	this->gameOverText.setCharacterSize(80); // in pixels, not points!
@@ -71,15 +69,30 @@ void Game::updateText()
 
 void Game::incrementScore()
 {
-	//if (obstacles.size() > 0 && curr != obstacles.end() && (*curr)->getPos().x < player.getPos().x)
 	if (obstacles.size() > 0 && (*curr)->getPos().x < player.getPos().x)
 	{
 		cout << "Incrementing score" << endl;
-		score++;
 		if(next(curr, 1) != obstacles.end()){
 			curr = next(curr, 1);
+			score++;
 		}
 	}
+}
+
+double Game::concat()
+{
+	string random = to_string(rand() % 10 + 1);
+	string num = "0.0";
+
+	// Concatenate both strings
+	string allTogether = num.substr(0, num.find_first_of(".") + 2) + random;
+
+	// Convert the concatenated string
+	// to integer
+	double c = stod(allTogether);
+
+	// return the formed integer
+	return c;
 }
 
 //Constructors
@@ -163,7 +176,7 @@ void Game::render()
 
 void Game::spawnObstacles()
 {
-	spawnTimer += 0.1f;
+	spawnTimer += concat();
 	if (spawnTimer >= spawnTimerMax)
 	{
 		Obstacle* ob = new Obstacle(window->getSize().x, 470.f);

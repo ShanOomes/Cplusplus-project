@@ -7,6 +7,7 @@
 #include <SFML/Audio.hpp>
 
 #include <vector>
+#include <stdlib.h>
 
 #include "Player.h"
 #include "Flake.h"
@@ -60,6 +61,8 @@ private:
 
 	void updateText();
 	void incrementScore();
+
+	double concat();
 public:
 	//Constructors
 	Game();
