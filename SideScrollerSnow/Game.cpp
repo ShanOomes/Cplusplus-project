@@ -72,27 +72,11 @@ void Game::incrementScore()
 	if (obstacles.size() > 0 && (*curr)->getPos().x < player.getPos().x)
 	{
 		cout << "Incrementing score" << endl;
+		score++;
 		if(next(curr, 1) != obstacles.end()){
 			curr = next(curr, 1);
-			score++;
 		}
 	}
-}
-
-double Game::concat()
-{
-	string random = to_string(rand() % 10 + 1);
-	string num = "0.0";
-
-	// Concatenate both strings
-	string allTogether = num.substr(0, num.find_first_of(".") + 2) + random;
-
-	// Convert the concatenated string
-	// to integer
-	double c = stod(allTogether);
-
-	// return the formed integer
-	return c;
 }
 
 //Constructors
@@ -159,6 +143,7 @@ void Game::render()
 	//Draw potential objects
 	this->player.draw(this->window);
 	this->flake.draw(this->window);
+	this->environment.draw(this->window);
 
 	if (this->isGameOver) {
 		this->window->draw(this->gameOverText);
@@ -176,7 +161,7 @@ void Game::render()
 
 void Game::spawnObstacles()
 {
-	spawnTimer += concat();
+	spawnTimer += 0.1f;
 	if (spawnTimer >= spawnTimerMax)
 	{
 		Obstacle* ob = new Obstacle(window->getSize().x, 470.f);
@@ -184,6 +169,7 @@ void Game::spawnObstacles()
 		
 		curr = obstacles.begin();
 
+		spawnTimerMax = rand() % 15 + 5;
 		spawnTimer = 0.f;
 	}
 

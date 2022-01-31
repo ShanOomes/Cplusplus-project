@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Flake.h"
 #include "Obstacle.h"
+#include "Environment.h"
 
 using namespace std;
 using namespace sf;
@@ -24,6 +25,8 @@ private:
 	//Variables
 	Player player;
 	Flake flake;
+
+	Environment environment;
 
 	bool isGameOver;
 
@@ -61,8 +64,6 @@ private:
 
 	void updateText();
 	void incrementScore();
-
-	double concat();
 public:
 	//Constructors
 	Game();
