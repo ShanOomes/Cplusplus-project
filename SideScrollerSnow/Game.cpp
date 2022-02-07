@@ -73,7 +73,7 @@ void Game::incrementScore()
 {
 	if (obstacles.size() > 0 && (*curr)->getPos().x < player.getPos().x)
 	{
-		cout << "Incrementing score" << endl;
+		//cout << "Incrementing score" << endl;
 		score++;
 		if(next(curr, 1) != obstacles.end()){
 			curr = next(curr, 1);
@@ -135,28 +135,6 @@ void Game::update()
 		this->updateText();
 
 		incrementScore();
-
-		switch (score) {
-		case 5:
-			obstacleSpeed = 4;
-			break;
-		case 10:
-			obstacleSpeed = 5;
-			break;
-		case 20:
-			obstacleSpeed = 6;
-			break;
-		case 30:
-			obstacleSpeed = 7;
-			break;
-		case 40:
-			obstacleSpeed = 8;
-			break;
-
-		case 50:
-			obstacleSpeed = 10;
-			break;
-		}
 	}
 }
 
@@ -207,8 +185,30 @@ void Game::spawnObstacles()
 		if (obstacles[i]->getPos().x < -10) {
 			delete obstacles[i];
 			curr = obstacles.erase(obstacles.begin() + i);
-			cout << "Obstacle delete" << endl;
+			//cout << "Obstacle delete" << endl;
 		}
+	}
+
+	switch (score) {
+	case 5:
+		obstacleSpeed = 4;
+		break;
+	case 10:
+		obstacleSpeed = 5;
+		break;
+	case 20:
+		obstacleSpeed = 6;
+		break;
+	case 30:
+		obstacleSpeed = 7;
+		break;
+	case 40:
+		obstacleSpeed = 8;
+		break;
+
+	case 50:
+		obstacleSpeed = 10;
+		break;
 	}
 }
 
@@ -220,12 +220,7 @@ void Game::checkCollision()
 		if (collides)
 		{
 			this->isGameOver = true;
-			cout << "Collision with obstacles" << endl;
+			//cout << "Collision with obstacles" << endl;
 		}
 	}
-}
-
-void Game::debugGame()
-{
-	cout << "Mouse pos: " << Mouse::getPosition(*this->window).x << " " << Mouse::getPosition(*this->window).y << "\n";
 }

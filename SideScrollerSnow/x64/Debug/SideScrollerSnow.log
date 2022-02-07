@@ -1,8 +1,10 @@
 ﻿  Game.cpp
-C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Game.cpp(191,48): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Game.cpp(169,48): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Game.cpp(196,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\SideScrollerSnow\Game.cpp(174,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Source.cpp
+  Generating Code...
   SideScrollerSnow.vcxproj -> C:\Copyc\New Leerjaar 4\BUas\GameEngine\C---project\x64\Debug\SideScrollerSnow.exe
